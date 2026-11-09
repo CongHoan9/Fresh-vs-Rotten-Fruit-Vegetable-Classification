@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh vs Rotten Fruit Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Font Awesome cho các icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-leaf"></i> Phân Loại Trái Cây Tươi & Hỏng</h1>
+            <p>Bài tập lớn Deep Learning - Mô hình nhận diện hình ảnh</p>
+        </header>
+
+        <main class="dashboard">
+            <!-- Khu vực Input -->
+            <div class="card input-section">
+                <h2><i class="fas fa-upload"></i> Tải ảnh lên</h2>
+                
+                <div class="upload-area" id="upload-area">
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                    <div class="upload-placeholder" id="upload-placeholder">
+                        <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                        <p>Kéo thả ảnh vào đây hoặc <span>Click để chọn</span></p>
+                    </div>
+                    <img id="image-preview" src="" alt="Preview" style="display: none;">
+                </div>
+
+                <button id="predict-btn" class="btn primary-btn" disabled>
+                    <i class="fas fa-robot"></i> Nhận diện ngay
+                </button>
+            </div>
+
+            <!-- Khu vực Output -->
+            <div class="card output-section">
+                <h2><i class="fas fa-chart-bar"></i> Kết quả phân tích</h2>
+                
+                <!-- Trạng thái chờ -->
+                <div id="loading" class="hidden">
+                    <div class="spinner"></div>
+                    <p>Mô hình đang phân tích...</p>
+                </div>
+
+                <!-- Kết quả hiển thị -->
+                <div id="result-container" class="hidden">
+                    <div class="main-result">
+                        <h3 id="result-class">Táo Tươi</h3>
+                        <div class="confidence-badge">
+                            Độ tự tin: <span id="result-confidence">98.5</span>%
+                        </div>
+                    </div>
+
+                    <!-- Bảng chi tiết model -->
+                    <div class="model-details">
+                        <h4>Chi tiết xác suất các nhãn:</h4>
+                        <ul id="details-list">
+                            <!-- JS sẽ đổ dữ liệu vào đây -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Placeholder khi chưa có ảnh -->
+                <div id="empty-state">
+                    <i class="fas fa-image fa-3x" style="color: #ccc;"></i>
+                    <p>Hãy tải một bức ảnh lên để xem kết quả từ mô hình AI.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
